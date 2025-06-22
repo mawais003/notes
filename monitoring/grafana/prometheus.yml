@@ -1,0 +1,765 @@
+# Sample config for Prometheus.
+
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      #monitor: 'example'
+      monitor: 'GFM-MIX-Monitoring'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: ['localhost:9093']
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+  - "prometheus_rules.yml"
+    #- "alermanager_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 10s
+    scrape_timeout: 5s
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: Prometheus-Server-node-exporter
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['localhost:9100']
+  
+  #- job_name: 'grok_exporter'
+  #  static_configs:
+  #    - targets: ['nginx-pri:9144']
+  
+  - job_name: blackbox # To get metrics about the exporter itself
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['localhost:9115']
+  
+  #- job_name: 'Info-Status'
+    #scrape_timeout: 15s
+    #scrape_interval: 15s
+    #metrics_path: /probe
+    #params:
+    #  module: [http_2xx]
+    #static_configs:
+    #  - targets:
+    #    - https://www.mubasher.info
+    #    - https://uds.feedgma.com/DfnUDS/
+    #relabel_configs:
+    #  - source_labels: [__address__]
+    #    target_label: __param_target
+    #  - source_labels: [__param_target]
+    #    target_label: instance
+    #  - target_label: __address__
+    #    replacement: localhost:9115        
+  
+
+
+  ##############################################################
+  #            MIX Components TCP ports conigurations          #
+  ##############################################################
+
+
+    #------------------------------#
+    #     Search-pri-tcp           #
+    #------------------------------#
+
+  - job_name: 'search-pri-tcp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['search-pri:9086']
+        labels:
+          instance: 'announcement-search-pri-9086'
+      - targets: ['search-pri:9080']
+        labels:
+          instance: 'direct-chartdata-store-pri-9080'
+      - targets: ['search-pri:9084']
+        labels:
+          instance: 'news-search-pri-9084'
+      - targets: ['search-pri:9082']
+        labels:
+          instance: 'symbol-search-pri-9082'
+      # announcement.search(9086) | direct.chartdata.store(9080) | news.search(9084) | symbol.search(9082)
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+    #------------------------------#
+    #  Search-sec-tcp  by Atiq     #
+    #------------------------------#
+  
+  - job_name: 'search-sec-tcp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['search-sec:9086']
+        labels:
+          instance: 'announcement-search-sec-9086'
+      - targets: ['search-sec:9080']
+        labels:
+          instance: 'direct-chartdata-store-pri-9080'
+      - targets: ['search-sec:9084']
+        labels:
+          instance: 'news-search-sec-9084'
+      - targets: ['search-sec:9082']
+        labels:
+          instance: 'symbol-search-sec-9082'
+      - targets: ['search-sec:8380']
+        labels:
+          instance: 'uds-dfn-jboss-6.1.0.Final-frontend-8380'
+
+      # announcement.search(9086) | direct.chartdata.store(9080) | news.search(9084) | symbol.search(9082)
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+
+
+    #------------------------------#
+    #     Chart-pri-tcp            #
+    #------------------------------#
+
+  - job_name: 'chart-pri-tcp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['chart-pri:9098'] 
+        labels:
+          instance: 'adjusted-ab-chartdata-store-pri-9098'
+      - targets: ['chart-pri:9096'] 
+        labels:
+          instance: 'adjusted-direct-chartdata-store-pri-9096'
+      - targets: ['chart-pri:9082'] 
+        labels:
+          instance: 'direct-chartdata-store47-pri-9082'
+      - targets: ['chart-pri:9101'] 
+        labels:
+          instance: 'direct-chartdata-store-adjusted-nml-pri-9101'
+      - targets: ['chart-pri:9086'] 
+        labels:
+          instance: 'history-adjusted-cd-137-chartdata-store-pri-9086'
+      - targets: ['chart-pri:9039'] 
+        labels:
+          instance: 'fundamental-screener-pri-9039'
+
+    # adjusted_ab_chartdata.store(9098) | adjusted-direct.chartdata.store(9096) | direct.chartdata.store47(9082) | direct.chartdata.store_adjusted_nml(9101) | history_adjusted_cd_137_chartdata.store(9086) | fundamental.screener(9039)
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+   
+
+
+    #------------------------------#
+    #     Chart-sec-tcp  by Atiq   #       
+    #------------------------------#
+  
+  - job_name: 'chart-sec-tcp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['chart-sec:9098']
+        labels:
+          instance: 'adjusted-ab-chartdata-store-sec-9098'
+      - targets: ['chart-sec:9096']
+        labels:
+          instance: 'adjusted-direct-chartdata-store-sec-9096'
+      - targets: ['chart-sec:9082']
+        labels:
+          instance: 'direct-chartdata-store47-sec-9082'
+      - targets: ['chart-sec:9101']
+        labels:
+          instance: 'direct-chartdata-store-adjusted-nml-sec-9101'
+      - targets: ['chart-sec:9086']
+        labels:
+          instance: 'history-adjusted-cd-137-chartdata-store-sec-9086'
+      - targets: ['chart-sec:9039']
+        labels:
+          instance: 'fundamental-screener-sec-9039'
+
+    # adjusted_ab_chartdata.store(9098) | adjusted-direct.chartdata.store(9096) | direct.chartdata.store47(9082) | direct.chartdata.store_adjusted_nml(9101) | history_adjusted_cd_137_chartdata.store(9086) | fundamental.screener(9039)
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+
+
+    #------------------------------#
+    #     FD-pri-tcp               #       
+    #------------------------------#
+
+     
+  - job_name: 'fd-pri-tcp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      #- targets: ['fd-pri:9090'] 
+      #  labels:
+      #    instance: 'direct-authorizer-pri-9090' 
+      - targets: ['fd-pri:9094'] 
+        labels:
+          instance: 'direct-dcms-store-pri-9094' 
+      - targets: ['fd-pri:9088'] 
+        labels:
+          instance: 'direct-fundamentaldata-store-pri-9088' 
+      - targets: ['fd-pri:9092']
+        labels:
+          instance: 'direct-tick-store-pri-9092'
+      - targets: ['fd-pri:9090']
+        labels:
+          instance: 'direct-authorizer-pri-9090'
+
+      - targets: ['fd-pri:8380'] 
+        labels:
+          instance: 'UDS-jboss-pri-8380' 
+      #direct.authorizer(9090) | direct.dcms.store(9094) | direct.fundamentaldata.store(9088) | UDS-jboss-6.1.0.Final(8380)
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+
+
+    #------------------------------#
+    #     FD-sec-tcp               #
+    #------------------------------#
+
+  - job_name: 'fd-sec-tcp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      #- targets: ['fd-sec:9090']
+      #  labels:
+      #    instance: 'direct-authorizer-sec-9090'
+      - targets: ['fd-sec:9094']
+        labels:
+          instance: 'direct-dcms-store-sec-9094'
+      - targets: ['fd-sec:9088']
+        labels:
+          instance: 'direct-fundamentaldata-store-sec-9088'
+      - targets: ['fd-sec:9092']
+        labels:
+          instance: 'direct-tick-store-sec-9092'
+      - targets: ['fd-sec:8380']
+        labels:
+          instance: 'UDS-jboss-sec-8380'
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+
+
+
+    #------------------------------#
+    #     MIX-pri-tcp              #
+    #------------------------------#
+
+  
+  - job_name: 'mix-pri-tcp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['mix-pri:8380'] # MIX-jboss-6.1.0.Final(8380)
+        labels:
+          instance: 'mix-jboss-pri-8380'
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+    #------------------------------#
+    #     MIX-sec-tcp  by Atiq     #
+    #------------------------------#
+
+  - job_name: 'mix-sec-tcp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['mix-sec:8380'] # MIX-jboss-6.1.0.Final(8380)
+        labels:
+          instance: 'mix-jboss-sec-8380'
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+
+    #------------------------------#
+    #     Data-Manager-PRI-tcp     #
+    #------------------------------#
+
+  - job_name: 'data-man-pri'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['data-man-pri:9004']
+        labels:
+          instance: 'data-man-pri-9004'
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+    #------------------------------#
+    #     Data-Manager-Sec-tcp     #
+    #------------------------------#
+
+  - job_name: 'data-man-sec'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['data-man-sec:9004']
+        labels:
+          instance: 'data-man-sec-9004'
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+    #------------------------------#
+    #     DB-Manager-PRI-tcp       #
+    #------------------------------#
+
+  - job_name: 'db-man'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['db-man:9004']
+        labels:
+          instance: 'db-man-9004'
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+        #-------------------------------------#
+        #       Factset news tcp              #
+        #-------------------------------------#
+
+  - job_name: 'factsetnews'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['factset-news-pri:9006']
+        labels:
+          instance: 'factset-news-qouteserver-9006'
+      - targets: ['factset-news-pri:7045']
+        labels:
+          instance: 'factset-news-bridgeserver-7045'
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+       #-------------------------------------#
+        #       Factset news secondary tcp    #
+        #-------------------------------------#
+
+  - job_name: 'factsetnews-sec'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['factsetnews-sec:9006']
+        labels:
+          instance: 'factset-news-qouteserver-9006'
+      - targets: ['factsetnews-sec:7045']
+        labels:
+          instance: 'factset-news-bridgeserver-7045'
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+     
+        #-------------------------------------#
+        #       feed gfm history solr tcp     #
+        #-------------------------------------#
+
+  - job_name: 'feed-gfm-history-solr'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['gfm-feed-history-solar:8983']
+        labels:
+          instance: 'gfm-feed-history-solar:8983'
+      
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+        #-------------------------------------#
+        #       feed gfm CCP tcp              #
+        #-------------------------------------#
+
+  - job_name: 'feed-gfm-ccp'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['feed-ccp:8380']
+        labels:
+          instance: 'feed-ccp:8380'
+
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+
+
+         #-------------------------------------#
+        #       feed gfm Meta solr tcp        #
+        #-------------------------------------#
+
+  - job_name: 'feed-meta-solr'
+
+    scrape_interval: 60s
+    scrape_timeout: 60s
+    metrics_path: /probe
+    params:
+      module: [tcp_connect]  # Look for TCP response
+    static_configs:
+      - targets: ['feed-meta-solr:9854']
+        labels:
+          instance: 'solr-8.2.0:9854'
+      - targets: ['feed-meta-solr:9084']
+        labels:
+          instance: 'direct-news:9084'
+      - targets: ['feed-meta-solr:9085']
+        labels:
+          instance: 'direct-news:9085'
+      - targets: ['feed-meta-solr:9086']
+        labels:
+          instance: 'direct-annoucement:9086'
+      - targets: ['feed-meta-solr:9087']
+        labels:
+          instance: 'direct-annoucement:9087'
+      - targets: ['feed-meta-solr:8983']
+        labels:
+          instance: 'meta-solr:8983'
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: localhost:9115  # The blackbox exporter's real hostname:port.
+
+ 
+    ##############################################################
+    #            MIX Components Node-Exporter conigurations      #
+    ##############################################################
+    #  The node exporter enables you to measure various machine resources such as memory, disk and CPU utilization.
+
+  - job_name: db-nodes
+    static_configs:
+    #  - targets: ['rw-oracle-db:9100']
+      - targets: ['ro-oracle-db:9100']
+        labels:
+          group: "Databases-rw-ro"
+  
+  
+  - job_name: data-man-nodes
+     # If prometheus-node-exporter is installed, grab stats about the local
+     #machine by default.
+    static_configs:
+      - targets: ['data-man-pri:9100']
+      - targets: ['data-man-sec:9100']
+        labels:
+          group: "Data-Manager-pri-sec"
+ #- job_name: db-man-node
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+ #   static_configs:
+ #     - targets: ['db-man:9100']
+ #       labels:
+ #         group: "Database-Manager"
+  - job_name: nginx-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['nginx-pri:9100']
+      - targets: ['nginx-sec:9100']
+        #- targets: ['ro-oracle-db:9100']
+        labels:
+          group: "Nginx-pri-sec"
+
+  - job_name: prometheus-nginxlog-exporter
+    static_configs:
+      - targets: ['nginx-pri:4040']
+      - targets: ['nginx-sec:4040']
+        #labels:
+        #  group: "NginxLogs-pri-sec"
+
+
+  #- job_name: Telegraph
+  #  static_configs:
+  #    - targets: ['nginx-pri:9125']
+  #      #- targets: ['nginx-sec:4040']
+  #      #labels:
+  #      #  group: "NginxLogs-pri-sec"
+
+
+  - job_name: search-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['search-pri:9100']
+      - targets: ['search-sec:9100']
+        labels:
+          group: "Search-Service-pri-sec"
+  - job_name: chart-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['chart-pri:9100']
+      - targets: ['chart-sec:9100']
+        labels:
+          group: "Chart-Service-pri-sec"
+  
+          
+  
+  
+  - job_name: fd-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['fd-pri:9100']
+      - targets: ['fd-sec:9100']
+        labels:
+          group: "FundamentalData-pri-sec"
+  - job_name: mix-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['mix-pri:9100']
+      - targets: ['mix-sec:9100']
+        labels:
+          group: "MIX-Servers-pri-sec"
+  
+#  - job_name: ir-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+#   static_configs:
+#     - targets: ['ir-pri:9100']
+#     - targets: ['ir-sec:9100']
+#        labels:
+#          group: "ir-pri-sec"
+  
+  - job_name: decypha-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['decypha-pri:9100']
+      - targets: ['decypha-sec:9100']
+        labels:
+          group: "decypha-pri-sec"
+
+  - job_name: dcp-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['dcp-pri:9182']
+        labels:
+          group: "dcp-pri"
+
+  - job_name: factset-news-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['factsetnews-pri:9100']
+      - targets: ['factsetnews-sec:9100']
+        labels:
+          group: "factset-news"
+
+
+  - job_name: ir-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['ir-pri:9100']
+      - targets: ['ir-sec:9100']
+        labels:
+          group: "ir-prod"
+
+
+  - job_name: feed-history-solr-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['gfm-feed-history-solar:9100']
+        labels:
+          group: "feed-history-solr"
+
+
+  - job_name: feed-ccp-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['feed-ccp:9100']
+        labels:
+          group: "feed-ccp"
+
+
+  - job_name: feed-meta-solr-nodes
+    # If prometheus-node-exporter is installed, grab stats about the local
+    # machine by default.
+    static_configs:
+      - targets: ['feed-meta-solr:9100']
+        labels:
+          group: "feed-meta-solr"
+

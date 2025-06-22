@@ -2900,3 +2900,363 @@ Firewalls can be categorized based on their position in the network and their me
 
 Both on-premise and cloud infrastructures use different types of firewalls depending on the security needs. On-premise firewalls are often more customizable, but cloud firewalls offer scalability and integration with cloud-specific services. The choice of firewall depends on the network environment and security requirements.
 
+
+
+========================
+
+# RHEL Interview Questions
+
+Q. : Introduce yourself?
+
+- Experiences
+- Flavours of Linux (apt/yum)
+- Concept of Cloud computing
+- concept of virtualization (hypervisors types)
+- nfs and samba diff?
+- nfs and ftp diff?
+- php web site (we want to restrict pluging directory only) -- chattr
+- concept of acl(setfacl)?
+- ACL in aws (difference between ACL and SG)
+- ssh and telnet difference?
+- OSI Layer
+- git (clone, pull, fetch)
+
+
+
+
+
+> Q. : What is the difference between Hardware, firmware and software?
+
+Hardware : That we can touch … keyboard, printer, cd-room, Mouse, etc.
+Software :  That we can see but cannot touch … any installed packages, OS, etc
+System softwares
+Application softwares
+Firmware : It is set of instructions/programs written in machine language to operate hardware.
+It is also a kind of software, not a software in real sense, but for understanding, we can call it hardware specific software. It is inserted inside hardware at the time of building hardware.
+We cannot even see this firmware
+Actually, just for example we have a keyboard as hardware, it has many tiny micro-components attached to it, we add a very small size software into this keyboard that will integrate all components of keyboard and make keyboard work as a keyboard.
+Once a hardware is built, its firmware cannot be removed (but can be updated) via firmware updates.
+
+
+> Case Q. : How will you automatically provide each newly created linux user, if you want to provide them with some set of instructions?
+
+Follow these steps:
+Make a file that you want to deliver to all new users, i.e., guide.txt
+Place file at this path as, /etc/skel/guide.txt
+Ensure that this path of skel is present inside “/etc/default/useradd” as:
+SKEL=/etc/skel
+Now, whenever a new user will be created, this file automatically be copied to its home dir.
+
+
+> Q.. : What are the main types of hypervisors?
+
+Hypervisors fall mainly under two categories:
+Type 1 : Bare-metal or Native Hypervisor
+These are installed directly above the hardware, no OS is present over hardware.
+ESXi, Xen hypervisor, Hyper-v, etc
+Type 2 : Hosted Hypervisor
+These are installed over some OS present above the hardware.
+Example: VirtualBox, etc
+
+
+> Q. : What is the difference between relational and non relational databases?
+
+Relational database is to store structured data. Just like if we have some table, data written inside the rows and columns of the table is inter-linked.
+Example : MySQL, MariaDB, PostgreSQL, Oracle, etc
+
+A Non-Relational database is to store unstructured data. Just like if we have some document files, the content within one file needs nothing else to explain them.
+Example : MongoDB, Redis, CouchDB, etc.
+
+
+
+> Q. : What are OSI layers? Define main modes of transmissions?
+
+Physical layer
+Data layer
+Network layer
+Transport layer
+Session layer
+Presentation layer
+Application layer
+
+
+> There are three main modes of Transmissions?
+
+Simplex : Sender will always be sender and vice versa. i.e., FM, router, etc.
+Half-Duplex : If one way is sending other can listen only, i.e., Walkie-Talkie wireless, etc.
+Full-Duplex : Both the sides can simultaneously send and receive, i.e., Telephone, etc
+
+Q. : What do you know about Proxmox?
+
+Proxmox is an open-source server virtualization management platform that integrates KVM-based virtualization and LXC containers, offering high availability, disaster recovery, and software-defined storage capabilities. It also comes under the type1 category of hypervisors.
+Its run on by default on port 8006. I.e., https://<proxmox-server-ip>:8006
+
+
+Q. : Some of the basic git commands?
+
+git init → creates a hidden dir inside our working directory, making it a local repo
+git add . → to add contents from working space to staging area
+git commit -m “my first commit” → to commit staged contents to local repo
+git log –oneline → will give us the details of all commits to our local repo from all branches
+git status → will show if there is any modified file that is not committed yet
+Red color files : that are not even staged
+Green color files : staged files and are ready to be committed
+
+git clean -n → will ask and delete the untracked files
+git clean -f → will forcefully delete the untracked files
+git remote -v → will show us the remote referenced repo to/from our code will be pushed/pulled
+If we did not add any as `git remote add origin <repository_URL>`, and we just clone a repo, this repo will be added as our remote repo, and we can push code to that repo if there are no set credentials
+
+
+Q. : What is git branching?
+
+	We can create branches to work simultaneously on multiple projects/aspects of a project.
+
+git branch → will show us all branches with * before our current branch as like, i.e., *master
+git checkout -b branch1 → will create branch1 and move to that branch1
+git branch branch1 → will create a new branch with name “branch1”
+git checkout branch1 → to change from current working branch to branch1
+git branch -d branch1 → to delete branch1 after it is merged to some other branch
+git branch -D branch1 → to forcefully delete branch1 before it is merged to some other branch
+git merge <branch_name> → to merge a branch into your current working branch
+
+
+
+Q. : What is the difference between git clone and git pull and git fetch?
+
+Git Clone : To import a project for the first time from central repo to local machine.
+Git Pull : After cloning repo for the first time, git pull will only pull incremental data from the already cloned repository.
+Git Fetch : Actually git pull is the combo of git fetch and git merge, get fetch only brings the data from central repo but will not merge it to the main branch.
+
+Q. : What is the difference between git clone and git fork?
+
+Git clone downloads the repository but git fork only copies the repository as we create a replica of public repository within our github registry using git fork.
+
+Q. : What is the git stash? How to use it?
+While working on any project, if we need to clear our working directory (but the project we are already working over is not yet completed, so we cannot commit it), we will send our code to stash.
+Here are some commands used in this regard:
+
+git stash → to send our code to stash area
+git stash list → to see list of our all stashed codes (we can stash multiple codes)
+It will show us a list with sr. no. (latest stashed item with no.0)
+git stash apply stash@{0} → to bring this particular sr.no. code back to working space from stash area
+This will actually copy paste the code from stash to our working space, so we need to clear the stashing area, once we have taken code back to our working space
+git stash drop stash@{0} → to remove particular code entry from stash area
+git stash clear → to clear the stashing area
+
+
+
+Q. : What is the git conflict?
+
+Git conflict occurs when we try to merge two branches that have a file with the same names but different contents.
+
+Git confuses in placing their contents, which file contents to keep at top at which one later.
+To resolve such conflict, simply open that file and do some modifications and close the file, git will noe understand that ok it is the correct setting as the owner has reviewed it now.
+
+
+Q. : What is git reset?
+
+	We use git reset command to back our file from staging area to working space.
+git reset <filename> → to have back a specific file from staging area
+git reset . → to have back all staged files/codes
+git reset –hard → will remove the entire code from staging area and also from working space
+
+
+Q. : What is git revert?
+
+	We use git revert to restore the previous version of code that we already have committed.
+git revert <commit id> → restores this state, we can get commit id from git log –oneline
+
+
+Q. : What is the difference between git reset and git revert?
+
+Git revert helps us undo an existing commit, actually git revert once again commits the code but restores its previous state in this new commit.
+Version control history moves forward but the state of your code moves backwards.
+
+Whereas git reset deals with getting back our code from staging area, before committing it to the local repo.
+
+
+Q. : Brief any branching strategy?
+
+There is a very good branching strategy that comprises of 4 types of branches:
+
+Feature branch → used while/for code development
+Release branch → code from feature branch is delivered to release branch for actually releasing it
+Hot Fix branch → Needed in some cases when we need to fix client’s complaint immediately
+Master branch → this branch always need to be updated
+
+Q. : What is the difference between git merge,  git rebase and git cherry-pick?
+.
+Git Merge: Combines changes from one branch into another, preserving the commit history from both branches.
+git checkout target-branch
+git merge feature-branch
+Git Rebase: Reapplies commits from one branch onto another, creating a linear history by placing your changes on top of the base branch.
+git checkout feature-branch
+git rebase target-branch
+Git Cherry-Pick: Selectively applies a specific commit from one branch to another without merging the entire branch.
+git checkout target-branch
+git cherry-pick <commit-hash>
+
+
+
+
+> Q. : Commonly used Frameworks for frontend::backend in deployments?
+
+Syntax: <Frontend Framework :: Runtime Env> <Backend Framework :: Runtime Env> <DB>
+
+
+MERN Stack : <React :: Browser > <Express :: Node.js> <MySQL>
+MEAN Stack : <Angular :: Browser> <Express :: Node.js> <MongoDB>
+LAMP Stack : <HTML/CSS/JavaScript :: Browser> <PHP :: Apache> <MySQL>
+Ruby on Rails Stack : <HTML/CSS/JavaScript :: Browser> <Rails :: Ruby> <PostgreSQL>
+Django Stack : <HTML/CSS/JavaScript :: Browser> <Django :: Python> <PostgreSQL>
+Spring Boot Stack : <React :: Browser> <Spring Boot :: Java> <PostgreSQL>
+
+
+
+# HTTP Status Codes Overview
+
+## 1xx: Informational Responses
+
+- 100 (Continue): Server acknowledges request. Client can proceed.
+   - Fix: No fix needed unless misused by the client.
+## 2xx: Success
+
+- 200 (OK): Request succeeded, and server returned the response.
+   - Fix: None, this indicates successful communication.
+- 201 (Created): Resource successfully created.
+   - Fix: None, indicates resource creation was successful.
+- 204 (No Content): Successful request, but no content is returned.
+   - Fix: None; ensure this status is intentional.
+
+## 3xx: Redirection
+
+- 301 (Moved Permanently): Resource permanently moved to another URL.
+   - Fix: Update client references or URL configurations.
+- 302 (Found): Resource temporarily moved.
+   - Fix: Review redirect logic to ensure correct temporary movement.
+
+## 4xx: Client Errors
+
+-  400 (Bad Request): Malformed request, invalid syntax, or incorrect parameters.
+   - Fix: Ensure client sends valid data (e.g., correct JSON format, required headers). OR Validate API parameters in the client-side code.
+- 401 (Unauthorized): Authentication is required or failed.
+   - Fix: Provide valid authentication credentials.
+- 403 (Forbidden): Client authenticated but does not have permission.
+   - Fix: Ensure proper permissions on the server for the user or token.
+- 404 (Not Found): Resource is not available on the server.
+   - Fix: Verify the endpoint URL is correct and the resource exists.
+- 405 (Method Not Allowed): HTTP method (e.g., GET, POST) not supported by the resource.
+   - Fix: Check server API methods and client-side method usage.
+- 429 (Too Many Requests): Client has sent too many requests in a short time.
+   - Fix: Implement rate-limiting or retry logic on the client side.
+
+## 5xx: Server Errors
+
+- 500 (Internal Server Error): Generic server error.
+   - Fix: Debug server logs to identify and resolve errors in server-side code.
+- 502 (Bad Gateway): Server received an invalid response from an upstream server.
+   - Fix: Check upstream server availability and configurations (e.g., load balancers).
+- 503 (Service Unavailable): Server is overloaded or under maintenance.
+   - Fix: Scale server resources or schedule downtime properly.
+- 504 (Gateway Timeout): Server did not receive a timely response from the upstream server.
+   - Fix: Optimize server response times and monitor upstream server health.
+- 524 (A Timeout Occurred) (Cloudflare-specific): Server took too long to respond.
+   - Fix: Check and optimize backend server response times.
+
+## Key Notes on Origins and Fixations
+
+### 4xx (Client-Side Issues):
+
+- Originate from incorrect requests sent by the client.
+- Fix involves client-side validation, correct data formatting, and endpoint verification.
+
+### 5xx (Server-Side Issues):
+
+- Originate from server-side processing or configurations.
+- Fix involves checking server logs, resolving code issues, and ensuring server health.
+
+# Inerview Follow-Ups | 4 Ways to Follow Up After a Job Interview
+
+## 1. The Thank-You Note
+
+A day after interview:
+
+```
+Dear [manager],
+
+Thank you so much for your time yesterday and for giving me the chance to share my interest and qualifications for [job]. I particularly enjoyed learning about how your company has a training program for new employees that gives them an overview of different units and career paths.
+
+I look forward to hearing from you.
+```
+
+## 2. The Follow-Up Note
+
+
+```
+Dear [manager],
+
+I wanted to follow up on my interview on [date] for [position]. I was wondering if you had news to share about the position. I enjoyed our discussion and getting to know more about [company]. Of the companies I have engaged with during my job search, I was particularly impressed by your commitment to training and development. I felt that this growth mindset was a good fit to my career aims.
+
+Please let me know if there is any additional information I can provide. I am excited about the opportunity to work with you at [company].
+```
+
+## 3. The Exception
+
+```
+Dear [manager],
+
+I wanted to follow up with you on my interview on [date] for [position]. Since we had a chance to talk, I received a job offer from another firm. However, your role as a leader in the field of [area], along with your commitment to developing the careers of your employees, is impressive, and I am excited about the prospect of working with you. If you have news about the position, I would like to know as I evaluate the offer I am considering.
+```
+
+## 4. The Feedback Note
+
+```
+Dear [manager],
+
+I was disappointed to learn that I did not get an offer following my interview on [date]. I enjoyed our conversation and am impressed with the work that [company] does. Because I am new to the job search, I was hoping you could give me some feedback on my interview. I would like to ensure that I present myself as effectively as possible in the future. Any suggestions you could give me would be appreciated.
+```
+
+# Eight interview “Bar raising” interview tips
+
+Some might call it unique. Others might call it peculiar. Indeed, Amazon’s thorough interview process is designed to help hiring managers identify candidates with the biggest potential to thrive and succeed at the company. And one particular member of every hiring team is especially integral to helping managers zero in on those top applicants: the Bar Raiser.
+
+
+A Bar Raiser—an interviewer who typically sits on another team—serves as an objective third party during the hiring process. As a steward of the company’s Leadership Principles, they capture a holistic picture of each candidate and aid in eliminating bias.
+In concert with the hiring manager, the Bar Raiser helps drive the pivotal decision on whether a candidate should be hired. They also help ensure that every new hire has the potential to grow in their role and brings skills that are better than 50% of their would-be peers in similar roles.
+In other words, Bar Raisers know full well what it takes to not only navigate Amazon’s interview process, but how to shine. Here, four Bar Raisers share essential tips on how to do just that.
+
+## 1. Go beyond your resume.
+
+It’s easy to become hyperfocused on the qualifications you put down on paper. But sometimes, what’s not on the page can be just as illuminating as what’s on it. Dawn Brun, director, Amazon Health Services Communications, appreciates it when a candidate “tells me something about themselves that I wouldn't learn from their resume. You can learn a lot about someone and the way they approach their work by who they are as a person outside of their professional experience.”
+
+## 2. Familiarize yourself with Amazon’s Leadership Principles.
+
+Every employee at Amazon is guided by 16 Leadership Principles: key tenets that serve as the backbone to how the company does business and approaches every decision—including job hires. “Prior to your interview, it will be valuable to look up the Leadership Principles and identify one or two work anecdotes that are relevant to each one,” noted Josh Hirschland, principal product manager, Amazon Community Impact. “Make sure you’re answering the question that is asked—but orienting your stories around the Leadership Principles can be helpful. As a candidate, you should have an idea in advance for what stories you want to tell.”
+
+## 3. Understand the power of practice.
+
+“Practice responding to questions on your own to familiarize yourself with the experience,” said Cedric Ross, senior manager, Amazon Tours. In the past, Ross has staged his own mock interviews in front of a mirror, as well as recorded himself on his phone “to help me understand how I am represented in an actual interview session.” An outside perspective also helps. “Find someone you trust to offer candid feedback and practice the interview with,” he added. “A different opinion may be helpful.”
+
+## 4. Be self-critical and demonstrate how you learned from mistakes.
+
+Everyone’s made their share of mistakes throughout their career. Instead of shying away from them, highlight how they’ve helped you grow. “We value when our team members are able to admit when things didn’t quite go to plan, critically evaluate both successes and failures, and learn from mistakes,” said Jess Turner, director of campaigns, International Consumer Communications. “Demonstrating what you’ve learned from a failure and how it changed the way you work can be an opportunity to really impress. My advice is to always be honest about your own mistakes, never be too quick to blame others, and demonstrate clear tangible actions you’ve taken based on the learnings.”
+
+## 5. Show your value.
+
+“Before responding to a question, keep in mind that this is your opportunity to demonstrate your value,” explained Ross. “Your examples should showcase your talent. No matter the role or responsibility, ask yourself if your example added value in some meaningful way.” Equally important, he said, is that you show how you added that value. “Don’t forget to end your response with a result,” he stressed—a reflection of Amazon’s data-driven focus.
+Read more about the STAR interview method and how you can best use data points to highlight your successes.
+
+## 6. Don’t be afraid to ask questions.
+
+“We want every candidate who gets an Amazon job offer to accept that role and succeed in it,” said Hirschland, who encourages applicants to be curious and ask questions. “At its best, an interview will feel more like a conversation with a curious friend than an interrogation. That means that your interviewers will want to help you understand Amazon and the team that you’re interviewing for so that you can make an informed decision. So ask the questions that you actually want to know the answers to.”
+
+## 7. Let your personality shine through, but always remain professional.
+
+It’s key to be yourself during an interview, which “helps build a rapport with your interviewer and ensures you feel more comfortable,” said Turner. However, she advised, be mindful not to become overly familiar. “It might sound obvious, but refrain from swearing or oversharing negative details around past work experiences, managers, or colleagues,” she noted. “If an interviewee gets too comfortable, too quickly, or overshares personal or negative details, it can cause the interviewer to lose trust in the candidate.”
+
+## 8. Be communicative about your needs during the interview.
+
+If you have a virtual interview, keep your surroundings in mind—and don’t be afraid to say something if you need to take a moment to adjust. “Folks are at home, and that means that life is happening around them,” noted Brun. Maybe the Wi-Fi cut out. Or things got really loud around you. When conditions suddenly take a nosedive, don’t hesitate to speak up. Brun recalled one candidate who, mid-interview, suddenly found himself in the middle of an earthquake. “He said, ‘We can keep going,’ and I said, ‘You go and get yourself to a safe place—we'll just pick up the conversation tomorrow.’ And I think we actually ended up hiring that candidate.”
+Trending news and stories
+
