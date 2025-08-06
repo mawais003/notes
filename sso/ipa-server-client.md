@@ -135,6 +135,8 @@ https://teleport.gfm.support
 
 @pkgfm-#telep0rt&)oP5L
 
+cwefgt3l3p#$&p0rt1ngoP5L  <--- active
+
 ====
 
 # Teleport Installation in Ubuntu 
@@ -295,3 +297,8 @@ sudo pg_md5 -m -u healthcheck mubasher321
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD 'mubasher321' ENCRYPTED PASSWORD 'md5';"
 
 ==================================
+
+
+
+
+
