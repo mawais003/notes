@@ -1,3 +1,8 @@
+Topics and exuestions:
+
+- 
+
+
 # 1: Agile   
 
 1. **Agile** - A mindset and approach to project management that emphasizes:
@@ -3259,4 +3264,5 @@ It’s key to be yourself during an interview, which “helps build a rapport wi
 
 If you have a virtual interview, keep your surroundings in mind—and don’t be afraid to say something if you need to take a moment to adjust. “Folks are at home, and that means that life is happening around them,” noted Brun. Maybe the Wi-Fi cut out. Or things got really loud around you. When conditions suddenly take a nosedive, don’t hesitate to speak up. Brun recalled one candidate who, mid-interview, suddenly found himself in the middle of an earthquake. “He said, ‘We can keep going,’ and I said, ‘You go and get yourself to a safe place—we'll just pick up the conversation tomorrow.’ And I think we actually ended up hiring that candidate.”
 Trending news and stories
+
 

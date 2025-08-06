@@ -92,7 +92,7 @@ Here is a brief overview of components of kubernetes which are created when in o
 - Distrubuted and reliable storage in k8s, that stores data in key-value format and manages the cluster.
 - Implements logs and prevents conflicts in-case of there are multuple masters in a cluster.
 
-### 3. Controller
+### 3. Controller Manager
 
 - It is the brain of orchestration.
 - It maintains the required state, number of containers and created new as soon as some goes down.
