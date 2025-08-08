@@ -322,7 +322,28 @@ If you haven’t:
 4. Simulated a kubelet crash mid-streaming session
 
 
+========================
 
+5. Can you explain the Kubernetes architecture?
+
+6. What is the role of worker nodes in a Kubernetes cluster?
+
+7. A pod is stuck in CrashLoopBackOff. What command would you use to debug it? What could be the reasons for this error?
+
+8. What are DaemonSets in Kubernetes?
+
+9. How are IP addresses assigned to pods?
+
+10. Which control plane component handles pod scheduling and node lifecycle?
+
+11. What is CNI (Container Network Interface) in Kubernetes?
+
+12. In Python, if num = "1", what happens when you run print(num + 1)?
+ And what if you try int("1" + 1)?
+
+13. How do you verify if a Kubernetes Job ran successfully? 
+
+=======================
 
 
 # 1: Agile   
