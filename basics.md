@@ -3690,11 +3690,14 @@ The AWS Disaster Recovery strategies, often aligned with recovery objectives (RT
 - `CloudFormation` for creating a collection of related AWS resources and provision them in an orderly and predictable fashion.
 - `Elastic Beanstalk` is a service for deploying and scaling web applications and services developed.
 - `OpsWorks` is an application management service for deploying and operating applications of all types and sizes.
-- `AWS Snowcone` is a data transport solution like Snowball Edge, it is not suitable for moving terabytes to petabytes of data. Usable storage for Snowcone is only **8 TB**.
+- `AWS Snowcone` is a data transport solution like Snowball Edge, it is not suitable for moving terabytes to petabytes of data. Usable storage for Snowcone is only **8 TB** and its weight is **2.1 kg**.
 - `EC2 Spot instances` can be interrupted by AWS EC2 with **two minutes of notification** when the service takes the capacity back
 - ``AWS Business Plan` gives support within 1 hour incase of any production failures/issues.
 - `Amazon EMR` is a web service that enables businesses, researchers, data analysts, and developers to easily and cost-effectively process vast amounts of data. It utilizes a hosted **Apache Hadoop framework** running on the web-scale infrastructure of Amazon EC2 and Amazon S3.
-
+- `Amazon Chime` is a high-quality communications service that transforms online meetings with an easy-to-use app that works seamlessly across all your devices.
+- `AWS Sumerian` is a service that lets you create and run 3D, Augmented Reality (AR), and Virtual Reality (VR) applications.
+- `AWS Glue` is incorrect because this is primarily an ETL service, used for preparing and transforming data for analytics
+- `Amazon Pinpoint` is AWS’s Digital User Engagement Service that enables AWS customers to effectively communicate with their end-users and measure user engagement across multiple channels including email, Text Messaging (SMS) and Mobile Push Notifications.
 
 ### Penetration testing over AWS Services
 
