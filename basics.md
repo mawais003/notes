@@ -3652,13 +3652,13 @@ There are 6 phases of CAF:
 This are 6 pillars namely:
 
 1. Operational Excellence
-2. Security
-3. Reliability
+2. Reliability
+3. Security
 4. Performance Efficiency
 5. Cost Optimization
 6. Sustainability
 
-(OSRPCS)
+(ORSPCS)
 
 ### AWS Disaster Recovery strategies
 
@@ -3698,6 +3698,11 @@ The AWS Disaster Recovery strategies, often aligned with recovery objectives (RT
 - `AWS Sumerian` is a service that lets you create and run 3D, Augmented Reality (AR), and Virtual Reality (VR) applications.
 - `AWS Glue` is incorrect because this is primarily an ETL service, used for preparing and transforming data for analytics
 - `Amazon Pinpoint` is AWS’s Digital User Engagement Service that enables AWS customers to effectively communicate with their end-users and measure user engagement across multiple channels including email, Text Messaging (SMS) and Mobile Push Notifications.
+- `Amazon Neptune` is a Graph Database service that makes it easy for you to build and run applications that work with highly connected datasets. It is mainly used for recommendation engines, fraud detection, knowledge graphs, drug discovery.
+- `AWS Step Functions` is a web service that enables you to coordinate the components of distributed applications and microservices using visual workflows. It provides auditable automation of routine deployments, upgrades, installations, and migrations.
+- `Amazon MQ` is a message broker service. It supports industry-standard APIs and protocols so you can switch from any standards-based message broker to Amazon MQ without rewriting the messaging code in your applications.
+- `AWS CloudHSM` is an AWS service that enables the creation and maintenance of hardware security modules (HSMs) in your AWS environment for cryptographic purposes. These HSMs are devices that process cryptographic operations and securely store cryptographic keys. By using AWS CloudHSM, you can offload SSL/TLS processing for web servers, as well as provide protection for critical data such as financial records, personally identifiable information (PII), and intellectual property.
+- `AWS Personal Health Dashboard` - in all four plans of AWS
 
 ### Penetration testing over AWS Services
 
