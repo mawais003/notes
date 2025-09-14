@@ -3607,3 +3607,21 @@ It’s key to be yourself during an interview, which “helps build a rapport wi
 
 If you have a virtual interview, keep your surroundings in mind—and don’t be afraid to say something if you need to take a moment to adjust. “Folks are at home, and that means that life is happening around them,” noted Brun. Maybe the Wi-Fi cut out. Or things got really loud around you. When conditions suddenly take a nosedive, don’t hesitate to speak up. Brun recalled one candidate who, mid-interview, suddenly found himself in the middle of an earthquake. “He said, ‘We can keep going,’ and I said, ‘You go and get yourself to a safe place—we'll just pick up the conversation tomorrow.’ And I think we actually ended up hiring that candidate.”
 Trending news and stories
+
+============================
+
+# Password hacking
+
+Normal techniques which hackers apply to steal password:
+
+- rainbow tables (tables containing <passwords>:<hashes>)
+- dictionary attack (massive collection of common <passwords>, they try all by generating their hashes by themselves)
+- bruteforce attack (they try with all possible combinations of letters/alphabets)
+
+Companies use `SALTING` techniques to secure their users credentials before storing them in databases.
+
+## Salting
+
+A technique that companies adopt to avoid hackers attacks for password breaches.
+
+They define a mechanism of salting which inserts its value into the original hash of your password before storing them in database. In this case, even if the password is leaked, hacker will not get your original password until unless he also gets your (private) key that your are using for their salting.
