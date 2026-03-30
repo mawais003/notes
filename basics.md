@@ -1,3 +1,16 @@
+
+neural networks (concept, flow and architect)
+activating functions
+back propagational
+bise and draining state
+techniques to overcome overfitting
+use of temperature parameter in LLM/models?
+quantized models?
+svm classifaction models?
+
+
+
+
 # Topics and important interview questions:
 
 ## DevOps Lead Interview at Netflix
@@ -3625,3 +3638,6 @@ Companies use `SALTING` techniques to secure their users credentials before stor
 A technique that companies adopt to avoid hackers attacks for password breaches.
 
 They define a mechanism of salting which inserts its value into the original hash of your password before storing them in database. In this case, even if the password is leaked, hacker will not get your original password until unless he also gets your (private) key that your are using for their salting.
+
+
+
