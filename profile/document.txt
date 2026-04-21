@@ -1,0 +1,92 @@
+Intro pitch:
+
+"Thanks Viktor. So I'm Awais — I've been in DevOps and platform engineering for about 4 years now, almost entirely on AWS. Right now I'm an Associate Lead at Global Financial Media where I look after infrastructure spanning around 350 AWS accounts. My day-to-day is a mix of everything — I run EKS clusters, manage PostgreSQL databases operationally, build CI/CD pipelines, and when things break in production, I'm the one triaging it and writing the RCA afterwards.
+
+One of the more interesting things I've built recently was a live streaming platform on EKS — NGINX-RTMP with FFmpeg transcoding, handling over 10,000 concurrent viewers. Also implemented Zero Trust access across our servers using Okta and HashiCorp Vault, which cut our breach exposure pretty significantly.
+
+I script a lot in Bash and Python to automate things, I use Cursor with Claude and AI tools throughout my workflow, and honestly I spend most of my working time with AI integrated into what I'm doing.
+
+Yeah, that's me in short."
+
+
+Some Question Answers:
+
+Q2: Have you worked with EKS clusters? What about ECS?
+
+"Yes, both. My primary container orchestration experience is with EKS — I run our streaming and application workloads there. I've handled the full lifecycle: provisioning node groups with Terraform, configuring HorizontalPodAutoscaler for pods, setting up Karpenter for node-level autoscaling, managing namespaces, RBAC policies, and monitoring everything through Prometheus and Grafana. For ECS, I've used it for simpler stateless workloads — Java apps on Tomcat, things like that — where we didn't need the full Kubernetes ecosystem and wanted tighter AWS-native integration with less operational overhead."
+
+Q3: What was the size of the cluster — nodes, pods?
+
+"For our main EKS cluster, we typically run 8 to 12 nodes during normal operations across multiple node groups — a mix of m5.large and c5.xlarge depending on workload type. Pod count is usually around 30 to 40 across our services. During live streaming events though, with 10,000+ concurrent viewers, Karpenter scales us up significantly — we've hit 20+ nodes during peak traffic. On the ECS side, it's smaller — maybe 5 to 8 EC2-backed instances running containerized Java applications."
+
+Q4: Have you worked with any database engine?
+
+"Yeah, primarily PostgreSQL and MySQL. PostgreSQL is the one I know deepest — I've managed it in production extensively. Also worked with MongoDB in some projects and DynamoDB for serverless workloads. Across our 350 AWS accounts, there's a mix, but PostgreSQL is what I've spent the most hands-on time with."
+
+Q5: Did you just use the database or did you operate the cluster?
+
+"I operated it. Not just writing queries — I handled the full operational side. For PostgreSQL that means managing replication for high availability, configuring automated backups with retention policies, running disaster recovery drills, tuning performance — things like connection pooling with PgBouncer, vacuum tuning, query optimization using EXPLAIN ANALYZE. I also managed secure access control, credential rotation, and set up monitoring for slow queries, connection counts, and storage growth through Prometheus with the postgres-exporter. When something went wrong at 2 AM, I was the one troubleshooting it."
+
+Q6: What is the difference between Point-in-Time Recovery and Replication? Why do we need both?
+
+"So replication is your proactive safety net — you maintain a live copy of the database that's continuously synced. If the primary goes down due to hardware failure or an AZ outage, the replica takes over with near-zero data loss. In PostgreSQL that's streaming replication using WAL segments.
+
+Point-in-Time Recovery is different — it's for when the data itself gets corrupted. Say someone runs a DELETE without a WHERE clause, or a bad migration wipes a table. Replication can't save you there because the bad write gets replicated instantly to all replicas. PITR lets you restore to the exact second before that happened by replaying WAL files up to that specific timestamp.
+
+So you need both — replication protects against infrastructure failures, PITR protects against logical or human errors. They cover completely different failure modes."
+
+Q7: What is the difference between StatefulSet, DaemonSet, and Deployment?
+
+"A Deployment is for stateless stuff — your APIs, web frontends. Pods are interchangeable, you kill one, another spins up, no state lost. Rolling updates and rollbacks are straightforward.
+
+StatefulSet is for workloads that need identity and persistent storage. Each pod gets a fixed name — like kafka-0, kafka-1 — and its own PersistentVolumeClaim that survives restarts. They start and stop in order, which matters for things like cluster coordination.
+
+DaemonSet ensures exactly one pod runs on every node in the cluster. When a new node joins, the DaemonSet automatically schedules a pod on it. Used for node-level infrastructure — log collection with Fluentd, metrics with node-exporter, network plugins."
+
+Q8: Kafka, MCP server, and a collector — which controller for each? Why StatefulSet for Kafka?
+
+"Kafka as a StatefulSet, MCP server as a Deployment, collector as a DaemonSet.
+
+Kafka needs StatefulSet because each broker maintains partition data on local disk and registers with ZooKeeper or KRaft using a stable broker ID. If a broker restarts with a different identity or loses its storage, the cluster has to do expensive partition reassignment and rebalancing. StatefulSet guarantees stable network identity, ordered startup, and persistent volumes per pod — exactly what Kafka needs to maintain data consistency.
+
+MCP server is stateless — any replica can handle any request, so a Deployment gives you easy horizontal scaling and rolling updates.
+
+Collector needs to run on every single node to capture local logs or metrics, so DaemonSet is the natural fit."
+
+Q9: What are the two technologies for automatic scaling of nodes in an EKS cluster?
+
+"The two are Cluster Autoscaler and Karpenter.
+
+Cluster Autoscaler is the older, traditional approach. It watches the Kubernetes scheduler for pods stuck in Pending state, then scales up the underlying Auto Scaling Group to add nodes. The limitation is it's reactive and slow — it polls every 10 to 15 seconds, then the ASG launches an instance from a fixed launch template, the node bootstraps and joins the cluster — the whole cycle can take 2 to 3 minutes. And you're locked into whatever instance types you pre-configured in the ASG.
+
+Karpenter is the newer approach and what I use. It bypasses ASGs entirely — when pods can't be scheduled, Karpenter evaluates their actual resource requirements and calls the EC2 Fleet API directly to provision the right-sized instance. You define constraints in a NodePool CRD — instance families, AZs, Spot vs On-Demand. It's much faster, usually under 60 seconds. It also does automatic node consolidation — moves workloads to fewer nodes when demand drops and terminates the extras. For our streaming workloads with unpredictable spikes, Karpenter made a real difference."
+
+If he asks about ECS instead:
+
+"For ECS, the two approaches are ECS Capacity Providers with managed scaling, and raw ASG scaling policies. Capacity Providers are the smarter option — they track a metric called CapacityProviderReservation, which is the ratio of needed capacity versus available capacity, and scale the ASG based on actual task placement demand. They also have managed termination protection so ECS won't kill instances that still have running tasks. The alternative is configuring the ASG directly with CloudWatch-based scaling policies on CPU or memory — but for memory you need the CloudWatch Agent installed since AWS doesn't collect it by default."
+
+Q10: After the RCA is written, what follow-up activities should we do?
+
+"The RCA is only useful if it drives action. So first, every finding gets a permanent fix assigned to a specific owner with a deadline — not 'we should fix this eventually' but an actual ticket with a due date. Second, close the monitoring gap — if our alerting didn't catch the incident early enough, add the specific alerts that would have detected it. Third, update the runbooks with this new failure mode and the remediation steps so the next person on call handles it faster. Fourth, share it with the team — we do post-incident reviews so everyone learns from it, not just the two people who worked the incident. And finally, after the fixes are deployed, validate that they actually prevent recurrence — either through testing or by monitoring for the same pattern."
+
+Q11: How are you using AI in your daily work? At what level?
+
+"Pretty heavily, honestly. At the basic level, I use Claude and GPT daily for things like debugging Terraform issues, analyzing log patterns, drafting RCA documents, and reviewing infrastructure code. Beyond that, I work in Cursor IDE which has AI agents that can make changes across multiple files — so when I'm writing Python automation or Bash scripts, the AI is actively helping me build, not just answering questions.
+
+I'm also getting into MCP integrations — connecting AI tools to infrastructure systems so I can query state and metrics through natural language instead of digging through dashboards. I haven't built fully autonomous agents yet, but that's where I'm pushing myself next. I'd say I'm somewhere between the MCP level and custom skills level right now, moving toward agentic workflows."
+
+Q12: What is your motivation for applying?
+
+"Honestly, three things. First, the scale — managing 350 AWS accounts at my current company has been great experience, but Trilogy operates at a completely different level with over a thousand accounts and dozens of products. That's the challenge I want.
+
+Second, the team structure. The quarterly rotation model where you work on observability one quarter, cost optimization the next, migrations after that — that's exactly how I want to grow. I don't want to be the guy who only knows one product's infrastructure.
+
+Third, the AI-first culture. Most companies just talk about AI adoption — Trilogy actually expects engineers to use it 75% of the time. That matches how I already work, and I want to be in an environment that pushes me further in that direction."
+
+Q13: What do you expect from your daily work? What are you looking for?
+
+"Ownership and variety, mainly. I want to own problems end-to-end — from triaging the incident, to writing the RCA, to shipping the permanent fix. Not just executing someone else's playbook, but authoring the playbook.
+
+I also want exposure to different systems and products. The quarterly rotation model you described is really appealing because it keeps me sharp and builds broad expertise.
+
+And honestly, I also value a sustainable pace. I work hard — managing 350 accounts keeps you busy — but I've learned that taking time for fitness and reading actually makes me a better engineer when I'm on the clock. I'm not the guy who burns out in six months. I want to do this long term."

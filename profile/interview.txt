@@ -1,0 +1,549 @@
+ParakeetAI Timeline Export
+Exported: 10/04/2026, 19:42:27
+
+💬 **Question**: How to present myself effectively for the Cloud Reliability Engineer role at Trilogy without a transcript?
+
+---
+
+⭐️ **Answer**: I am a Cloud, DevOps, and MLOps Engineer with over 4 years of experience designing and operating scalable, secure, and production-grade cloud platforms, primarily on AWS. I have a strong background in managing complex infrastructure, automating workflows with Python and Bash, and implementing Infrastructure as Code using Terraform. My experience includes maintaining high availability systems with 99.99% uptime, managing Kubernetes clusters with 40+ microservices, and leading cloud migrations with zero downtime. I am skilled at triaging production outages, writing thorough root cause analyses, and driving permanent fixes by collaborating with engineering teams. I am confident in navigating unfamiliar AWS environments, stabilizing systems, and pushing uptime beyond 99.9% through real monitoring and automation. I also bring expertise in scripting, incident management, and cost optimization, all of which align well with Trilogy’s focus on industrializing reliability across multiple SaaS products. I am eager to contribute my technical skills, problem-solving mindset, and leadership experience to keep the lights on and improve cloud infrastructure reliability at Trilogy.
+
+[19:04] Interviewer 1
+Good afternoon.
+
+[19:04] Interviewer 1
+First of all, sorry for being late.
+
+[19:04] Interviewer 1
+Oh. Busy. Friday.
+
+[19:04] Interviewer 1
+Okay. If you do not mind, I have to start the recording.
+
+[19:04] Interviewer 1
+Official rules for the interview. Give me a second and then we can.
+
+[19:04] Interviewer 1
+Jump on it.
+
+[19:04] Interviewer 1
+Okay.
+
+[19:04] Interviewer 1
+So thanks for joining for this session. Um, basically, this location will be about to have the, uh, the entry for the senior levels position for what you were applying. Uh, my name is Victor Molnar, and I'm working in the sales team as one of the VP's.
+
+[19:04] Interviewer 1
+Uh, basically the agenda that I was, what I propose is we can start with a short introduction from you. Afterwards, as you can imagine, I have to have a couple of technical questions. And basically at the end, I would like to leave you some time to ask any question what you would like to know. Uh, but you are curious about it and they're gonna give my best to answer all of your questions.
+
+[19:05] Interviewer 1
+Thank you.
+
+[19:06] Interviewer 1
+Okay. Thanks for this. Uh, quick introduction. Uh, based on your past experience, uh, have you worked with ECS cluster on top of OS?
+
+💬 **Question**: Experience working with ECS clusters on top of OS
+
+---
+
+⭐️ **Answer**: Yes, I have experience working with AWS ECS clusters. In my previous roles, I have managed containerized microservices using both ECS and EKS. ECS is AWS’s native container service, which is simpler to set up and tightly integrated with AWS infrastructure. I have used ECS for deploying and managing Docker containers on EC2 instances, ensuring smooth orchestration and scaling of services. My experience includes configuring ECS clusters on top of Linux-based EC2 instances, handling task definitions, service autoscaling, and integrating with AWS monitoring tools like CloudWatch for observability. This aligns well with the requirements of managing production-grade container infrastructure and automating operational workflows.
+
+[19:06] Interviewer 1
+And what was the.
+
+💬 **Question**: Clarification on experience with ECS clusters on top of OS
+
+---
+
+⭐️ **Answer**: I have hands-on experience working with AWS ECS clusters running on Linux-based EC2 instances. ECS is AWS’s native container service, which is simpler to set up and manage compared to Kubernetes-based EKS. I have used ECS to deploy and manage Docker containers, handling task definitions, service autoscaling, and integrating with AWS monitoring tools like CloudWatch. This experience includes managing containerized microservices, scaling them efficiently, and automating operational workflows using Python and Bash scripting. My background aligns well with the role’s focus on stabilizing and automating cloud infrastructure at scale.
+
+[19:07] Interviewer 1
+And what was the size of this, ECS cluster and Kubernetes cluster? What you were managing?
+
+💬 **Question**: Size of ECS and Kubernetes clusters managed
+
+---
+
+⭐️ **Answer**: In my previous role at Focus IT Services, I managed a Kubernetes cluster running over 40 microservices on AWS EKS, which involved scaling and maintaining high availability for a production e-commerce platform. The cluster size varied depending on demand, but typically it included multiple node groups with autoscaling enabled to handle traffic spikes efficiently. Regarding ECS, I have experience managing clusters with a similar scale, running containerized applications on EC2 instances, though my primary large-scale container orchestration experience has been with Kubernetes. This experience includes handling cluster autoscaling, resource optimization, and ensuring 99.99% uptime for critical services.
+
+[19:07] Interviewer 1
+No, no, no, not the company. But I mean, the, the ECS and the Kubernetes cluster. So how big was this cluster in terms of nodes or pods? Just to, you know, give me some imagination about what was the size of the infrastructure, what you were operating.
+
+💬 **Question**: Size of ECS and Kubernetes clusters managed in terms of nodes and pods
+
+---
+
+⭐️ **Answer**: The Kubernetes cluster I managed at Focus IT Services typically ran over 40 microservices deployed as pods across multiple nodes in an AWS EKS environment. The cluster size varied based on demand, but it generally consisted of several EC2 nodes with autoscaling enabled to handle traffic spikes, such as during peak e-commerce events. For ECS, while I have experience managing containerized applications on EC2 instances, the cluster size was smaller but still production-grade, typically involving multiple nodes running Docker containers. This experience includes scaling clusters, managing pod/node resources, and ensuring high availability and uptime.
+
+[19:08] Interviewer 1
+Okay. Okay.
+
+[19:08] Interviewer 1
+Uh. Over your past roles, have you worked with, uh, any database engine?
+
+💬 **Question**: Experience working with database engines
+
+---
+
+⭐️ **Answer**: Yes, I have worked extensively with several database engines including PostgreSQL, MySQL, MongoDB, DynamoDB, and AWS Aurora. For example, I successfully managed a zero-downtime migration of a high-traffic e-commerce database from MySQL to PostgreSQL on AWS Aurora using AWS Database Migration Service (DMS). This involved schema preparation, continuous data replication to keep both databases in sync, and a blue-green deployment strategy to ensure a smooth switch with rollback plans and proper monitoring. I have also worked with NoSQL databases like MongoDB and DynamoDB in production environments, managing data consistency and performance. This experience aligns well with managing and migrating production databases as required for this role.
+
+[19:08] Interviewer 1
+Okay. And in terms of those database engines, you just work with the database itself or you were operating basically the cluster as well.
+
+[19:08] Interviewer 1
+Yeah. So for this databases.
+
+💬 **Question**: Experience operating database clusters versus just using databases
+
+---
+
+⭐️ **Answer**: I have experience not only working with databases like PostgreSQL, MySQL, MongoDB, and DynamoDB but also operating and managing their clusters in production environments. For example, I have managed AWS RDS clusters including Aurora MySQL and PostgreSQL, handling tasks such as scaling, backups, failover, and performance tuning. I have also been involved in database migrations with zero downtime, which required careful cluster management and replication setup. Additionally, I have experience with monitoring database health, setting up alerts, and automating routine maintenance using Python and Bash scripts. This hands-on cluster operation experience ensures high availability and reliability, which aligns well with the Cloud Reliability Engineer role.
+
+[19:08] Interviewer 1
+Uh, you were just using the database itself or you were maintaining and operating the database cluster itself. So you were responsible for the operation as well, or just the usage of the database.
+
+💬 **Question**: Were you responsible for operating and maintaining database clusters or just using the databases?
+
+---
+
+⭐️ **Answer**: I was responsible for both using and operating the database clusters. In my roles, I managed production database clusters such as AWS RDS Aurora for PostgreSQL and MySQL, which included tasks like scaling, backups, failover, performance tuning, and monitoring. I also handled zero-downtime migrations that required careful cluster management and replication setup. Additionally, I automated routine maintenance and monitoring using Python and Bash scripts to ensure high availability and reliability. This hands-on operational experience with database clusters aligns well with the responsibilities of the Cloud Reliability Engineer role.
+
+[19:09] Interviewer 1
+Okay. Okay, okay.
+
+[19:09] Interviewer 1
+In terms of databases.
+
+[19:09] Interviewer 1
+Uh, can you explain me that? What is the difference between a point in time?
+
+[19:09] Interviewer 1
+Uh, recovery and between replication? So for. In which case, which one is useful?
+
+💬 **Question**: Explain the difference between point-in-time recovery and other database recovery methods
+
+---
+
+⭐️ **Answer**: Point-in-time recovery (PITR) is a database recovery method that allows you to restore the database to a specific moment in time, usually just before a failure or data corruption event. This is different from a full backup restore, which restores the database to the state at the time the backup was taken. PITR uses continuous transaction logs or write-ahead logs to replay changes up to the desired point, enabling precise recovery without losing all data after the last backup. This method is crucial for minimizing data loss and downtime in production environments, and I have implemented PITR strategies in AWS RDS databases to ensure high availability and quick recovery during incidents.
+
+💬 **Question**: Difference between recovery and replication, and when each is useful
+
+---
+
+⭐️ **Answer**: Recovery and replication serve different purposes in database management. Recovery, such as point-in-time recovery, is used to restore a database to a previous state after data loss, corruption, or failure. It helps you fix problems by rolling back to a known good point. Replication, on the other hand, is about copying and synchronizing data continuously between databases or clusters to ensure high availability, load balancing, or disaster recovery. Replication is useful for keeping standby databases ready to take over if the primary fails, or for scaling read operations. Recovery is used after an incident to restore data, while replication is used proactively to prevent downtime and data loss. In my experience, I have used replication during zero-downtime migrations to keep databases in sync, and recovery methods like PITR to quickly restore service after incidents.
+
+[19:10] Interviewer 1
+Yeah. So one of them is the replication. The other one is the point in time recovery. So in which cases which one is useful. Why we need both. Basically.
+
+💬 **Question**: When is replication useful versus point-in-time recovery, and why do we need both?
+
+---
+
+⭐️ **Answer**: Replication and point-in-time recovery (PITR) serve different but complementary purposes in database management. Replication is useful for maintaining real-time copies of your database across multiple nodes or regions. It helps with high availability, load balancing, and disaster recovery by allowing failover to a standby database if the primary one fails. For example, during zero-downtime migrations, I used continuous replication to keep source and target databases in sync, enabling smooth switching and quick rollback if needed. 
+
+Point-in-time recovery, on the other hand, is used to restore the database to a specific moment in time after data corruption, accidental deletion, or other failures. It allows you to recover lost or corrupted data by replaying transaction logs up to the desired point, minimizing data loss.
+
+We need both because replication protects against hardware or system failures by providing a live backup, while PITR protects against logical errors or data corruption by enabling precise restoration to a safe state. Together, they ensure robust data protection and high availability in production environments.
+
+[19:11] Interviewer 1
+Yeah. Yeah. So basically the point is is useful for, uh, uh, when the.
+
+[19:11] Interviewer 1
+Is corrupted. Okay. Good. As you said, you worked with Kubernetes and ECS. Can you describe me? What is the difference between a Statefulset, a Daemonset, and the deployment?
+
+💬 **Question**: What is the difference between a StatefulSet, a DaemonSet, and a Deployment in Kubernetes?
+
+---
+
+⭐️ **Answer**: In Kubernetes, StatefulSet, DaemonSet, and Deployment are different types of controllers used to manage pods, each serving a specific purpose:
+
+- **Deployment**: This is the most common controller used to manage stateless applications. It ensures that a specified number of pod replicas are running and can perform rolling updates and rollbacks. Deployments are ideal for scalable, stateless services where pods are interchangeable.
+
+- **StatefulSet**: This controller manages stateful applications that require stable, unique network identities and persistent storage. Each pod in a StatefulSet has a persistent identifier and storage that remains consistent across restarts. This is useful for databases or other services where data persistence and ordered deployment are important.
+
+- **DaemonSet**: This ensures that a copy of a pod runs on every node (or a subset of nodes) in the cluster. It is typically used for running background tasks like log collection, monitoring agents, or networking components that need to be present on all nodes.
+
+In my experience managing Kubernetes clusters on AWS EKS, I have used Deployments for microservices, StatefulSets for databases and stateful workloads, and DaemonSets for monitoring and security agents to ensure full cluster coverage. This understanding helps maintain reliability and scalability in production environments.
+
+[19:12] Interviewer 1
+Uh. If I give you three example, then. And basically the task would be to say that which one should be deployed as a daemonset, which one should be a deployment and which one should be a stateful set. So I have basically Kafka cluster. I have an MCP server and I have a collector.
+
+💬 **Question**: Which Kubernetes controller (DaemonSet, Deployment, StatefulSet) is appropriate for Kafka cluster, MCP server, and collector?
+
+---
+
+⭐️ **Answer**: For the given examples:
+
+- **Kafka cluster**: Should be deployed as a **StatefulSet** because Kafka is a stateful distributed system that requires stable network IDs and persistent storage for each broker to maintain data consistency and durability.
+
+- **MCP server**: This is typically a stateless application or service, so it should be deployed as a **Deployment**. Deployments are ideal for scalable, stateless workloads where pods can be easily replaced or updated.
+
+- **Collector**: Usually, collectors (like log or metrics collectors) need to run on every node to gather data locally. Therefore, a **DaemonSet** is appropriate to ensure one collector pod runs on each node in the cluster.
+
+This approach aligns with best practices I have applied managing Kubernetes clusters on AWS EKS, ensuring reliability, scalability, and proper resource utilization.
+
+[19:12] Interviewer 1
+And why we use the Statefulset for Kafka.
+
+💬 **Question**: Why do we use StatefulSet for Kafka in Kubernetes?
+
+---
+
+⭐️ **Answer**: We use StatefulSet for Kafka because Kafka is a stateful distributed system that requires stable network identities and persistent storage for each broker. StatefulSet ensures that each Kafka pod has a unique, consistent hostname and stable storage that persists across pod restarts or rescheduling. This is critical for Kafka to maintain data integrity, broker identity, and proper cluster coordination. Unlike Deployments, which treat pods as interchangeable, StatefulSets provide ordered deployment, scaling, and termination, which are essential for managing Kafka brokers reliably in Kubernetes. In my experience managing Kubernetes clusters, using StatefulSets for Kafka helped maintain high availability and data consistency in production environments.
+
+[19:13] Interviewer 1
+Okay. Uh, can you explain me a.
+
+[19:13] Interviewer 1
+What? So if I have an AWS ECS cluster and I have nodes under the ECS cluster, let's say the worker nodes, I have two.
+
+💬 **Question**: Can you explain the difference between AWS ECS and EKS?
+
+---
+
+⭐️ **Answer**: AWS ECS (Elastic Container Service) and EKS (Elastic Kubernetes Service) are both container orchestration services but have key differences:
+
+- **ECS** is AWS’s own container service. It is simpler to set up and manage because it is tightly integrated with AWS. It does not require learning Kubernetes concepts, making it easier for teams already familiar with AWS.
+
+- **EKS** is a managed Kubernetes service by AWS. It offers more power and flexibility because it runs standard Kubernetes, which is portable and works the same across different environments. However, it is more complex to set up and manage compared to ECS.
+
+- Use **ECS** if you want quick setup, less management overhead, and are fine with AWS-native features.
+
+- Use **EKS** if you need Kubernetes features, multi-cloud portability, or want to leverage the Kubernetes ecosystem.
+
+In my experience, I have worked with both services and chosen ECS for simpler, AWS-native deployments, and EKS when Kubernetes features and flexibility were required for managing complex microservices architectures.
+
+[19:13] Interviewer 1
+Possibility to have an automatic scaling of the nodes under the ECS cluster. Uh, can you explain what is the two possibility or two different technology. Let's say it in that way.
+
+[19:14] Interviewer 1
+Yes. So there is an ECS cluster. There are nodes under the ECS cluster. So basically these are circles and.
+
+💬 **Question**: What are two different technologies or possibilities for automatic scaling of nodes under an AWS ECS cluster?
+
+---
+
+⭐️ **Answer**: For automatic scaling of nodes in an AWS ECS cluster, there are two main approaches:
+
+- **Cluster Auto Scaling (CAS)**: This is an AWS feature that automatically adjusts the number of EC2 instances in your ECS cluster based on the resource needs of your running tasks. It works by integrating with the Auto Scaling Groups (ASG) that manage your ECS instances, scaling out when there is demand for more capacity and scaling in when resources are underutilized.
+
+- **EC2 Auto Scaling Groups (ASG)**: You can configure ASGs with scaling policies based on CloudWatch metrics such as CPU utilization, memory usage (with CloudWatch Agent installed), or custom metrics. ASGs handle the lifecycle of EC2 instances, adding or removing nodes automatically based on these policies.
+
+In my experience managing AWS infrastructure, I have used both CAS and ASG scaling policies to ensure ECS clusters scale efficiently to meet workload demands while optimizing costs. Additionally, monitoring with CloudWatch and installing the CloudWatch Agent for detailed metrics like memory usage helps fine-tune scaling triggers.
+
+[19:14] Interviewer 1
+I'm interested in that. What is the two different technology. What I can use to have automatic scaling for these nodes, with serving out the cluster.
+
+💬 **Question**: What are two different technologies to enable automatic scaling of nodes in an ECS cluster?
+
+---
+
+⭐️ **Answer**: The two main technologies to enable automatic scaling of nodes in an ECS cluster are:
+
+- **Cluster Auto Scaling (CAS)**: This AWS feature automatically adjusts the number of EC2 instances in your ECS cluster based on the resource demands of running tasks. It integrates with Auto Scaling Groups and scales out or in depending on the cluster’s capacity needs.
+
+- **EC2 Auto Scaling Groups (ASG)**: You configure ASGs with scaling policies based on metrics like CPU or memory usage. ASGs manage the lifecycle of EC2 instances, adding or removing nodes automatically based on these policies.
+
+In my experience, I have used both CAS and ASG scaling policies to ensure ECS clusters scale efficiently, maintaining high availability and optimizing costs. Proper monitoring with CloudWatch and setting up alerts is also key to fine-tuning scaling behavior.
+
+[19:14] Interviewer 1
+And do you know what was what is this technology, especially what can the, the scaling.
+
+💬 **Question**: What is the technology used for automatic scaling of nodes in an ECS cluster?
+
+---
+
+⭐️ **Answer**: The technology used for automatic scaling of nodes in an ECS cluster primarily involves two components:
+
+- **Cluster Auto Scaling (CAS)**: This AWS feature automatically adjusts the number of EC2 instances in your ECS cluster based on the resource demands of running tasks. It works by integrating with Auto Scaling Groups to add or remove instances as needed to maintain cluster capacity.
+
+- **EC2 Auto Scaling Groups (ASG)**: These groups manage the lifecycle of EC2 instances with scaling policies based on metrics like CPU or memory usage. ASGs automatically launch or terminate instances according to these policies.
+
+To get detailed memory metrics for scaling, the **CloudWatch Agent** must be installed on the instances because AWS does not track memory usage by default.
+
+In my experience, I have implemented both CAS and ASG scaling policies to ensure ECS clusters scale efficiently, maintain high availability, and optimize costs. Proper monitoring and alerting with CloudWatch are essential to fine-tune scaling behavior and avoid outages.
+
+[19:15] Interviewer 1
+Okay.
+
+[19:15] Interviewer 1
+Okay.
+
+[19:15] Interviewer 1
+Uh, just. One second. Yes. My next question would be that let's assume that you work on on an incident resolution. We solve the incident after the incident. We have to do the RCA after we have.
+
+[19:15] Interviewer 1
+The RCA what follow up activities we should do? So what comes after the RCA is written?
+
+💬 **Question**: What is your approach to incident resolution and conducting a root cause analysis (RCA) afterward?
+
+---
+
+⭐️ **Answer**: When working on incident resolution and conducting an RCA, my approach is:
+
+- **Immediate Incident Resolution**: Quickly triage the incident by gathering logs, metrics, and alerts to identify the root symptoms. Apply immediate fixes or workarounds to restore service availability while minimizing impact.
+
+- **Data Collection**: After stabilizing the system, collect detailed data from monitoring tools (CloudWatch, Prometheus, ELK), logs, and any relevant system traces to understand what happened.
+
+- **5-Whys Analysis**: Use the 5-Whys technique to drill down from the symptom to the underlying root cause, ensuring the analysis is thorough and focused on preventable issues.
+
+- **Document Findings**: Write a clear, concise RCA report that explains the incident timeline, root cause, contributing factors, and impact.
+
+- **Assign Permanent Fixes**: Identify and assign permanent corrective actions to the responsible teams, whether infrastructure, application, or process-related.
+
+- **Prevent Recurrence**: Implement monitoring improvements, automation, or process changes to prevent the same incident from happening again.
+
+In my experience managing production infrastructure and incidents, I emphasize clear communication, thorough analysis, and actionable follow-up to improve system reliability and reduce downtime.
+
+💬 **Question**: What follow-up activities should be done after writing the RCA?
+
+---
+
+⭐️ **Answer**: After writing the RCA, the key follow-up activities include:
+
+- **Assigning Permanent Fixes**: Ensure that the root cause’s permanent corrective actions are clearly assigned to the right teams, whether infrastructure, application, or process owners.
+
+- **Implementing Fixes**: Track the progress of these fixes to make sure they are implemented effectively and tested in staging before production rollout.
+
+- **Updating Documentation and Playbooks**: Revise runbooks, monitoring alerts, and operational procedures based on lessons learned to improve future incident response.
+
+- **Improving Monitoring and Automation**: Add or refine monitoring, alerting, and automation to detect and prevent similar issues proactively.
+
+- **Communicating with Stakeholders**: Share the RCA findings and follow-up plans with all relevant teams and leadership to maintain transparency and alignment.
+
+- **Review and Retrospective**: Conduct a post-incident review meeting to discuss what went well, what didn’t, and how to improve processes and tools.
+
+In my experience, these follow-up steps are critical to turning incident learnings into lasting reliability improvements and ensuring the same problems do not recur.
+
+[19:17] Interviewer 1
+Okay. Uh, over your, uh, past roles. However, you using AI in your daily work.
+
+[19:18] Interviewer 1
+What kind of a. Are you are using?
+
+💬 **Question**: What kind of AI are you using in your daily work?
+
+---
+
+⭐️ **Answer**: In my daily work, I use AI tools like Claude and GPT to enhance various DevOps and MLOps tasks. For example, I use AI to analyze error logs and identify patterns quickly, which speeds up debugging. AI also helps me generate initial drafts of runbooks, architectural diagrams, and incident RCA documents, saving time while ensuring accuracy. Additionally, I use AI to review code, such as Terraform plans and Python scripts, to catch security issues and improve best practices. Beyond tooling, I have built and operated AI infrastructure at scale, including deploying AI microservices and managing GPU-based inference pipelines. This combination of using AI as a force multiplier and managing AI systems gives me a strong edge in delivering reliable, automated cloud platforms.
+
+[19:18] Interviewer 1
+Okay.
+
+[19:18] Interviewer 1
+And in terms of using these eyes on which level are you using? I mean, that usually there's the first level when you just saying, uh, text messages to it and, and do something, then usually there is the next level where you have the, uh, the M.c.p.s. And over the MCP is there is even additional level where you go to write your own skills. And then the last level is usually the agent key. So in your daily work currently on which level you were using it.
+
+💬 **Question**: At what level do you use AI in your daily work—basic text interaction, using pre-built models (MCPs), writing custom skills, or building AI agents?
+
+---
+
+⭐️ **Answer**: In my daily work, I use AI across multiple levels depending on the task:
+
+- For quick tasks like debugging, documentation, and code review, I primarily interact with AI through text-based models like Claude and GPT, which help me analyze logs, generate runbooks, and draft RCA documents.
+
+- I also work with pre-built AI models and tools integrated into workflows, such as Weights & Biases for experiment tracking and Agenta for prompt lifecycle management, which are more advanced than simple text interaction.
+
+- At a deeper level, I have built custom AI microservices and pipelines, including GPU-accelerated inference systems for video and image generation, which involve writing custom AI skills and managing complex AI workloads.
+
+- While I have not built fully autonomous AI agents from scratch, I use agentic AI systems as part of my infrastructure to automate workflows and orchestrate AI tasks.
+
+Overall, my AI usage spans from basic text interaction to developing and operating sophisticated AI infrastructure, making me comfortable across all these levels.
+
+[19:19] Interviewer 2
+Okay.
+
+[19:20] Interviewer 1
+Yeah. I mean, from our point of view, we really believe in AI usage and we encourage the people to use AI. So we have the expectation towards all of our colleagues that at least 75% in their time, they should use AI. So for us, it's not an issue that if somebody is using AI because, uh, yeah, we really believe in that point.
+
+[19:20] Interviewer 1
+Okay.
+
+[19:20] Interviewer 1
+Okay. And what is your motivation in terms of applying for this job?
+
+💬 **Question**: What is your motivation for applying for this job?
+
+---
+
+⭐️ **Answer**: I am motivated to apply for this Cloud Reliability Engineer role because it perfectly aligns with my passion and expertise in building and operating reliable, scalable cloud infrastructure. I enjoy solving complex problems in production environments, especially where documentation is limited and systems are evolving, which matches your description of stabilizing chaos and improving uptime. I am excited by the opportunity to own infrastructure projects end-to-end, write production-grade automation, and lead incident response with thorough RCAs. Additionally, I appreciate your strong belief in AI usage, which fits well with my experience integrating AI tools to boost productivity and reliability. This role offers the chance to apply my deep AWS skills, coding experience, and automation mindset to make a real impact across a diverse SaaS product portfolio, which is exactly the kind of challenge I am looking for.
+
+[19:21] Interviewer 1
+Okay. So basically, because of the experience.
+
+[19:21] Interviewer 1
+And beside the experience for what you are searching for in terms of a job. So, but I try to understand that from my point of view, it's really important that, uh. Besides from our point of view, to have a good candidate, every candidate has the expectation for what they expect from work. And if this is not a match with what we can provide, then on long term, that's not going to work. So I'm really curious about, uh, how you imagine, uh, your daily work, what you would like to do, what you are interested in.
+
+💬 **Question**: What are your expectations for your daily work and what kind of tasks or environment are you looking for in this job?
+
+---
+
+⭐️ **Answer**: In my daily work, I look for a role where I can take full ownership of cloud infrastructure reliability and automation. I want to be deeply involved in troubleshooting complex production issues, writing clear root cause analyses, and building robust automation that prevents future outages. I enjoy breaking down large projects into manageable tasks and shipping production-grade code, especially in Python and Bash. I also value working in an environment that encourages innovation and the use of AI tools to improve efficiency. Collaboration with engineering teams to assign permanent fixes and improve system design is important to me. I prefer a role where I am empowered to make decisions quickly, avoid unnecessary bureaucracy, and focus on meaningful improvements rather than just maintaining legacy systems. Overall, I want to contribute to a culture of reliability and continuous improvement while growing my skills in AWS and automation.
+
+[19:22] Interviewer 1
+I strongly suggest you to not to do it.
+
+[19:22] Interviewer 1
+Based on my experience, I mean, I'm also this kind of person.
+
+[19:22] Interviewer 1
+I was exactly the same. I even have. So right now I have, um, a home lab here. Uh, with the whole rack and everything. So I really know this kind of situation. But a long run.
+
+[19:23] Interviewer 1
+Yeah.
+
+[19:23] Interviewer 1
+Yeah. I mean, I have the same opinion, but at least what I learned because I'm a little bit older from that point of view that.
+
+[19:23] Interviewer 1
+I worked also a lot. I really enjoyed it. I also spent several hours every single day on learning.
+
+[19:23] Interviewer 1
+And but on long run, you have to also find something outside of it which you are interested in because you have to have some that you know that that piece time when you're brain stop from that point of view, they usually activities because I know that if you're not focusing strongly on something, you're going to continuously think about it. I know.
+
+[19:24] Interviewer 1
+So that's why it's important to fund an additional question, which is not it as well. But this is just my opinion. But I suggest you to find something else as well.
+
+[19:24] Interviewer 1
+Okay. Good. Uh.
+
+[19:24] Interviewer 1
+I do not have any additional question. And as I promised, I also would like to give you the opportunity to ask anything else.
+
+[19:24] Interviewer 1
+One second to, uh.
+
+[19:25] Interviewer 1
+Uh, to finish up the notes. Okay. So.
+
+[19:25] Interviewer 1
+The source team has two main parts. The source and the DevOps. For us, this means the ETA and A3. We are searching currently for people. By the way, for both team. But this interview is about the DevOps position. Uh.
+
+[19:25] Interviewer 1
+The DevOps team currently contains.
+
+[19:25] Interviewer 1
+18 people. No.
+
+💬 **Question**: Can you tell me about the current structure of the DevOps team?
+
+---
+
+⭐️ **Answer**: From what I understand, the DevOps team is part of a larger source team that includes both source and DevOps functions. Specifically, the DevOps team covers areas like ETA and A3. The company is actively searching for new members for both parts of the source team, but this interview focuses on the DevOps position. I am excited about the opportunity to contribute to this team by leveraging my experience in managing complex AWS environments, automating infrastructure with Terraform and Python, and driving high availability and cost optimization.
+
+[19:25] Interviewer 1
+No, I'm not right. Because this. We joined a newcomer. So now it's 19 people working in the in the DevOps team. Basically for each of the colleagues, for every quarter. So this is on three month basis, we create an assignment. This assignment describe on which field you're gonna work in the upcoming three months. So it's not about your. I don't know, uh, we hire you to do RCA's or incidence resolution and you're going to continue to do that? Now, this is, a three month business assignments out of the 18 people, we have multiple, let's say smaller group. But even the scope of these groups are continuously changing. Every single quarter. It can be different based on for what we would like to focus, which is static, that in each quarter we have a group of people who has the assignment as general. Q this is how we call it. They are the ones who handle the incidents. The RCA is the follow up fixes the long term fixes, and the normal feature request as well. From the from the products.
+
+[19:26] Interviewer 1
+Uh, it usually contains 5 to 6 person.
+
+[19:26] Interviewer 1
+Beside that, the additional.
+
+[19:26] Interviewer 1
+How much is that? 13 people? Is work on something else? There are much smaller groups. So for example, two people is working on central observability right now. Two people is working on some cost optimization on one of our projects to, uh, three people is working on, uh, migrating some stuff from Azure to AWS for specific project. One people was working on. To introducing WAF in terms of the networking architecture. Uh, but these things as these are the current focus here in the last quarter, it was totally different. And in the next quarter, it can be different again, because, you know, before every quarter we decide, okay, in the next quarter on which fields we would like to focus. Definitely where we have the biggest needs. So I would say that if somebody is working with us, then he gonna touch everything under everything. Just for imagination, talking about. I think we have above maybe.
+
+[19:27] Interviewer 1
+Above 1 or 2000 AWS account, something like that. Uh, we have 20, 30, 40 product one.
+
+[19:28] Interviewer 1
+One of our largest products.
+
+[19:28] Interviewer 1
+Just for the production, including variants, contains.
+
+[19:28] Interviewer 1
+12 X cluster and one of their X cluster is above In reproduction. So we have lots of things. We have Docker clusters, EKS clusters, central databases, our own monitoring system. I solutions and all of these are maintained by the SaaS team. So we responsible for all of these. All of the production environments for all of the products, which is on AWS.
+
+[19:28] Interviewer 1
+So it's continuously changing on what you are working on. Really, really interesting. I can tell you that.
+
+[19:28] Interviewer 1
+Um. We have so much things to do. So I think right now in the source team's backlog, there is 2.5 thousand ticket. Something like that.
+
+[19:29] Interviewer 1
+Um, definitely the privatization, but there are so much things that we would like to achieve.
+
+[19:29] Interviewer 1
+I'm not sure if you have any additional questions.
+
+💬 **Question**: Do you have any questions for us?
+
+---
+
+⭐️ **Answer**: Yes, I would like to understand more about the team's approach to prioritizing the backlog of 2,500 tickets you mentioned. How do you decide which reliability or infrastructure issues get addressed first, especially when managing such a large and diverse product portfolio? Also, could you share how the team leverages automation and AI tools in day-to-day incident response and monitoring to maintain high uptime? This will help me better align my skills and experience with your current needs.
+
+[19:29] Interviewer 1
+So first of all, I enjoyed the discussion with you. Um.
+
+[19:29] Interviewer 1
+I think in terms of interviewing.
+
+[19:29] Interviewer 1
+Uh, what can be useful that if, you know, the exact fields.
+
+[19:29] Interviewer 1
+Where the company, which is important for a specific company to dig into those fields.
+
+💬 **Question**: What specific information or fields would be useful for you?
+
+---
+
+⭐️ **Answer**: From my experience managing complex AWS environments and multiple SaaS products, the most useful fields to track and document include:
+
+- Infrastructure components involved (e.g., EKS clusters, Docker clusters, databases)
+- Exact service or microservice names affected
+- Incident timestamps and duration
+- Root cause details with clear 5-Whys analysis
+- Immediate fixes applied and their outcomes
+- Permanent fix assignments to responsible teams
+- Monitoring alerts and metrics relevant to the incident (CPU, memory, network, disk, etc.)
+- Change requests and validation status before production rollout
+- Automation scripts or playbooks used during incident response
+
+Having these fields clearly documented helps in faster troubleshooting, better knowledge sharing, and continuous improvement of reliability processes.
+
+[19:30] Interviewer 1
+Uh, it's also really important from my point of view.
+
+[19:30] Interviewer 1
+Uh. Is to.
+
+[19:30] Interviewer 1
+How can I say that to have.
+
+[19:30] Interviewer 1
+Of the really good answer for the non-technical questions.
+
+💬 **Question**: Why is it important for a company to dig into specific incident fields?
+
+---
+
+⭐️ **Answer**: It is crucial for a company to dig into specific incident fields because this detailed information enables precise root cause analysis and effective resolution. By understanding exactly what happened, when, and where, teams can identify patterns, prevent recurring issues, and assign accountability properly. This level of detail supports building reliable automation and monitoring that catch edge cases early. It also helps in creating accurate, actionable runbooks and playbooks that improve incident response speed and quality. Ultimately, this focus drives higher uptime, reduces operational chaos, and builds trust with customers by ensuring continuous service availability.
+
+[19:30] Interviewer 1
+I do a lot of interviews. I mean, not just for this company, but I'm doing interviews since I think 2015. Yeah, I do interviews for more than 11 years right now.
+
+[19:30] Interviewer 1
+Uh, and basically every time that I was saying for everybody, it's from my point of view to make the decision is somebody should be hired or not. There's nothing.
+
+[19:30] Interviewer 1
+Of any of the technical knowledge that's involved, the soft skills. How do people react, how they work on different stuff? And the technical expertise. Just provide on which level and with which salary. We should hire somebody. Here. Trilogy. It's a little bit different because.
+
+[19:30] Interviewer 1
+Announced.
+
+[19:31] Interviewer 1
+At the beginning that this is a salary. This is the things. But this is how I think that the most important part in terms of. In terms of a colleague is the soft skills and all the stuff we believe. Single reason, as you said, uh, also based on yourself, if somebody has the good mindset and if somebody would like to learn, we can teach anybody to any technical things, but we have the wrong mindset to change the behavior. That would take years. We do not have years to change somebody's behavior. So my suggestion. Not for this, not just for this one, but any interview in your life and even in terms of self concentrate, the most on the soft skills, and then you're gonna skyrocket in your career.
+
+[19:32] Interviewer 1
+Yeah. I enjoyed this. I have a couple of colleagues from Pakistan. Also in my direct team. I think 2 or 3 person right now. So yeah, I think that's good. Um.
+
+[19:32] Interviewer 1
+I'm not sure if you have any other question. But you're interested in really anything. And I give my best to answer it.
+
+[19:32] Interviewer 1
+Yeah. Okay. If no additional questions. Uh, what I can say is that after each interview round, we have to do an internal evaluation. Uh, where where are we gonna run through, uh, all the things that we're discussing. This is the reason why we have, for example, this crossover interview assistant. This is an AI which is going to make the notes in the tool about discussing.
+
+[19:33] Interviewer 1
+Uh, and after that, we're going to provide the feedback from our point of view, we'd like to continue, or not. Then also you can decide if you would like to come here, what you can expect. That I think in the beginning of next week, you should gonna hear about us. So I think around Monday or Tuesday, you should receive some, feedback.
+
+[19:33] Interviewer 1
+Then. I wish you nice day and really nice weekend because, uh, yeah, I think it's already weekend time. Almost. And yeah, take care and be safe. Bye bye.
