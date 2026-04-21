@@ -133,6 +133,10 @@ Amazon WorkDocs is simply a fully managed, secure content creation, storage, and
 
 ![alt text](image-1.png)
 
+> and here are the storage class lifecycle transitions for objects stored on Amazon S3
+
+![alt text](image-4.png)
+
 
 - **ElasticCache**
     - Enabling Multi-AZ for ElastiCache Redis automatically provisions replica nodes in different AZs and configures :
