@@ -1,0 +1,114 @@
+logstash configurations
+
+root@elk-stack:/etc/logstash# pwd
+/etc/logstash
+root@elk-stack:/etc/logstash# ls
+conf.d  jvm.options  log4j2.properties  logstash-sample.conf  logstash.yml  pipelines.yml  startup.options
+root@elk-stack:/etc/logstash# ls conf.d/
+logstash.conf  logstash.conf.bkp
+root@elk-stack:/etc/logstash# cat conf.d/logstash.conf
+input {
+  beats {
+    host => "0.0.0.0"
+    port => 5004
+   }
+}
+
+filter {
+  grok {
+    match => {
+      "message" => [
+        "%{SYSLOGTIMESTAMP:timestamp} %{HOSTNAME:hostname} %{DATA:service}\[%{POSINT:pid}\]: %{GREEDYDATA:log_message}"
+      ]
+    }
+  }
+
+  grok {
+    match => {
+      "log_message" => [
+        "disconnect from %{DATA:client} \[%{IPV4:client_ip}\]",
+        "connect from %{DATA:client} \[%{IPV4:client_ip}\]",
+        "warning: %{DATA:warning_message}",
+        "NOQUEUE: reject: RCPT from %{DATA:client_hostname}\[%{IPV4:client_ip}\]: %{NUMBER:status_code} %{GREEDYDATA:reason}; from=<%{EMAILADDRESS:sender}> to=<%{EMAILADDRESS:recipient}> proto=%{WORD:smtp_proto} helo=<%{GREEDYDATA:helo}>",
+        "status=bounced %{GREEDYDATA:bounce_message}",
+        "status=deferred %{GREEDYDATA:deferred_message}",
+        "status=sent %{GREEDYDATA:sent_message}",
+        "warning: unknown\[%{IPV4:warning_ip}\]: SASL LOGIN authentication failed: %{GREEDYDATA:sasl_message}",
+        "warning: connect to Milter service %{GREEDYDATA:milter_service_message}"
+      ]
+    }
+  }
+
+  if "disconnect from" in [message] {
+    mutate {
+      add_field => { "status" => "disconnected" }
+    }
+  }
+  if "connect from" in [message] {
+    mutate {
+      add_field => { "status" => "connected" }
+    }
+  }
+  if "warning: unknown" in [message] and "SASL LOGIN authentication failed" in [message] {
+    mutate {
+      add_field => { "status" => "sasl_failed" }
+    }
+  }
+  if "warning: connect to Milter service" in [message] {
+    mutate {
+      add_field => { "status" => "milter_warning" }
+    }
+  }
+  if "NOQUEUE: reject:" in [message] {
+    mutate {
+      add_field => { "status" => "rejected" }
+      add_tag => [ "reject" ]
+    }
+  }
+  if "status=bounced" in [message] {
+    mutate {
+      add_field => { "status" => "bounced" }
+      add_tag => [ "bounced" ]
+    }
+  }
+  if "status=deferred" in [message] {
+    mutate {
+      add_field => { "status" => "deferred" }
+      add_tag => [ "deferred" ]
+    }
+  }
+  if "status=sent" in [message] {
+    mutate {
+      add_field => { "status" => "sent" }
+      add_tag => [ "sent" ]
+    }
+  }
+
+  date {
+    match => [ "timestamp", "MMM  d HH:mm:ss", "MMM dd HH:mm:ss" ]
+    target => "@timestamp"
+  }
+
+  mutate {
+    remove_field => [ "timestamp", "log_message" ]
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://178.63.246.125:9200"]
+    index => "logstash-%{+YYYY.MM.dd}"
+  }
+}
+root@elk-stack:/etc/logstash# cat logstash.yml 
+path.data: /var/lib/logstash
+http.host: "0.0.0.0"
+root@elk-stack:/etc/logstash# cat pipelines.yml 
+- pipeline.id: main
+  path.config: "/etc/logstash/conf.d/*.conf"
+root@elk-stack:/etc/logstash# 
+
+
+Elasticsearch configurations:
+
+
